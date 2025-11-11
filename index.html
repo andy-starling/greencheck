@@ -5,6 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GreenCheck — экологический и юридический консалтинг</title>
 <meta name="description" content="GreenCheck — команда экологов и юристов. Снижаем риски, готовим к проверкам, внедряем устойчивые практики, выстраиваем экологический комплаенс.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#34A853">
+<link rel="canonical" href="https://greencheck.example/">
+<meta property="og:title" content="GreenCheck — экологический и юридический консалтинг">
+<meta property="og:description" content="Снижаем риски, готовим к проверкам, внедряем устойчивые практики и выстраиваем экологический комплаенс.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://greencheck.example/">
+<meta property="og:site_name" content="GreenCheck">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:alt" content="GreenCheck — экологический и юридический консалтинг">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GreenCheck — экологический и юридический консалтинг">
+<meta name="twitter:description" content="Снижаем риски, готовим к проверкам, внедряем устойчивые практики и выстраиваем экологический комплаенс.">
+<meta name="twitter:image" content="/og-image.png">
 <style>
   /* ==== БАЗА и ТЕМА ==== */
   :root{
@@ -106,7 +121,7 @@
     aspect-ratio:1/1; width:min(420px, 90%); margin:28px auto; background:radial-gradient(60% 60% at 30% 30%, rgba(255,255,255,.28), transparent), radial-gradient(60% 60% at 70% 70%, rgba(255,255,255,.18), transparent);
     border:1px solid rgba(255,255,255,.35); border-radius:40px; display:grid; place-items:center;
   }
-  .hero-logo{width:140px; opacity:.96; filter:drop-shadow(0 6px 18px rgba(0,0,0,.25))}
+  .hero-logo{width:100%; height:100%; object-fit:cover; border-radius:inherit; box-shadow:0 10px 40px rgba(0,0,0,.18)}
   @media (max-width:980px){ .hero-grid{grid-template-columns:1fr} .hero-illust{order:-1} .hero-blob{width:min(360px, 92%)} }
 
   /* ==== РАЗДЕЛЫ ==== */
@@ -196,18 +211,32 @@
   .gap-8{gap:8px}
   .mt-8{margin-top:8px} .mt-12{margin-top:12px} .mt-16{margin-top:16px} .mt-20{margin-top:20px} .mt-24{margin-top:24px}
   .note{font-size:13px; color:#5a6}
+
+  /* ==== ФОКУС И SKIP-LINK ==== */
+  .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+  .skip-link:focus{left:16px; top:8px; width:auto; height:auto; padding:8px 12px; border-radius:10px; background:#fff; box-shadow:var(--shadow-1); z-index:100}
+  .btn:focus-visible, .nav-cta:focus-visible, .menu a:focus-visible, .burger:focus-visible, .badge:focus-visible, .to-top:focus-visible, .close:focus-visible {
+    outline:3px solid rgba(0,191,166,.7); outline-offset:2px
+  }
+
+  /* ==== ПРЕДПОЧТЕНИЕ МЕНЬШЕ ДВИЖЕНИЯ ==== */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *, *::before, *::after{animation:none !important; transition:none !important}
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#top">Перейти к содержимому</a>
 
 <header class="site-header">
   <div class="container nav">
     <a href="#top" class="brand" aria-label="GreenCheck">
-      <img alt="Логотип GreenCheck" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEuCAYAAABx7s3WAAAACXBIWXMAAA7EAAAOxAGVKw4bAA...TRUNCATED_PLACEHOLDER..." />
+      <img alt="Логотип GreenCheck" width="36" height="36" src="GreenCheck_logo.png" />
       <strong>GreenCheck</strong>
     </a>
 
-    <nav class="menu" id="menu">
+    <nav class="menu" id="menu" aria-label="Основная навигация">
       <a href="#about">О компании</a>
       <a href="#services">Услуги</a>
       <a href="#events">Мероприятия</a>
@@ -217,7 +246,7 @@
       <a class="nav-cta" href="#contacts">Оставить заявку</a>
     </nav>
 
-    <button class="burger" id="burger" aria-label="Меню">
+    <button class="burger" id="burger" aria-label="Меню" aria-controls="menu" aria-expanded="false">
       <span></span>
     </button>
   </div>
@@ -231,20 +260,20 @@
         <div class="hero-copy">
           <span class="eyebrow">
             <!-- leaf icon -->
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 21s6-2 9-5 9-13 9-13-10 6-13 9-5 9-5 9Z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 21s6-2 9-5 9-13 9-13-10 6-13 9-5 9-5 9Z" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             Экологический и юридический консалтинг
           </span>
           <h1>Снижаем риски. Готовим к проверкам. Помогаем работать законно и экологично.</h1>
           <p>Мы проверяем документы и процессы, выявляем уязвимости и выстраиваем прозрачный экологический комплаенс, чтобы проверки проходили предсказуемо и спокойно.</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#services">Посмотреть услуги</a>
-            <button class="btn btn-ghost" data-open-modal data-service="Общий запрос">Оставить заявку</button>
+            <button class="btn btn-ghost" type="button" data-open-modal data-service="Общий запрос">Оставить заявку</button>
           </div>
           <div class="mt-12 note">В работе опираемся на экспертизу команды, опыт взаимодействия с органами власти и успешные природоохранные проекты.</div>
         </div>
         <div class="hero-illust">
           <div class="hero-blob">
-            <img class="hero-logo" alt="GreenCheck логотип" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEuCAYAAABx7s3WAAAACXBIWXMAAA7EAAAOxAGVKw4bAA...TRUNCATED_PLACEHOLDER..." />
+            <img class="hero-logo" alt="Полевой экологический аудит: прибор замера качества воды" width="420" height="420" src="u2851659695_field_environmental_audit_on_site_professional_en_70f2f0d8-dcd6-47e8-a2c1-c097a397a37d_1.png" loading="lazy" decoding="async" />
           </div>
         </div>
       </div>
@@ -332,7 +361,7 @@
       <div class="grid cols-3">
         <!-- Экологические -->
         <article class="card">
-          <div class="badge" data-open-modal data-service="Экологические">ОСТАВИТЬ ЗАЯВКУ</div>
+          <button type="button" class="badge" data-open-modal data-service="Экологические" aria-label="Оставить заявку: Экологические">ОСТАВИТЬ ЗАЯВКУ</button>
           <h3>Экологические</h3>
           <p class="muted">Проверки НВОС, отчётность, ПЭК и авторский надзор за соблюдением природоохранных требований на объекте.</p>
           <ul class="list">
@@ -344,7 +373,7 @@
 
         <!-- Юридические -->
         <article class="card">
-          <div class="badge" data-open-modal data-service="Юридические">ОСТАВИТЬ ЗАЯВКУ</div>
+          <button type="button" class="badge" data-open-modal data-service="Юридические" aria-label="Оставить заявку: Юридические">ОСТАВИТЬ ЗАЯВКУ</button>
           <h3>Юридические</h3>
           <p class="muted">Оспаривание претензий и штрафов, договорная база, регламенты и локальные акты.</p>
           <ul class="list">
@@ -356,7 +385,7 @@
 
         <!-- Специальные -->
         <article class="card">
-          <div class="badge" data-open-modal data-service="Специальные">ОСТАВИТЬ ЗАЯВКУ</div>
+          <button type="button" class="badge" data-open-modal data-service="Специальные" aria-label="Оставить заявку: Специальные">ОСТАВИТЬ ЗАЯВКУ</button>
           <h3>Специальные проекты</h3>
           <p class="muted">Сложные кейсы под отрасль: металлургия, нефтегаз, стройка, логистика.</p>
           <ul class="list">
@@ -368,7 +397,7 @@
 
         <!-- Образовательные -->
         <article class="card">
-          <div class="badge" data-open-modal data-service="Образовательные">ОСТАВИТЬ ЗАЯВКУ</div>
+          <button type="button" class="badge" data-open-modal data-service="Образовательные" aria-label="Оставить заявку: Образовательные">ОСТАВИТЬ ЗАЯВКУ</button>
           <h3>Образовательные услуги</h3>
           <p class="muted">Практические курсы для экологов и юристов: от комплаенса до ИИ-инструментов.</p>
           <ul class="list">
@@ -380,7 +409,7 @@
 
         <!-- Лидирующая экспертиза -->
         <article class="card">
-          <div class="badge" data-open-modal data-service="Лидирующая экспертиза">ОСТАВИТЬ ЗАЯВКУ</div>
+          <button type="button" class="badge" data-open-modal data-service="Лидирующая экспертиза" aria-label="Оставить заявку: Лидирующая экспертиза">ОСТАВИТЬ ЗАЯВКУ</button>
           <h3>Наша лидирующая экспертиза</h3>
           <p class="muted">Подготовка к проверкам, снижение рисков, построение прозрачного комплаенса и коммуникации.</p>
           <ul class="list">
@@ -399,7 +428,7 @@
             <li>Power BI/аналитика показателей;</li>
             <li>ИИ-инструменты для экоблока.</li>
           </ul>
-          <div class="mt-12"><button class="btn btn-solid" data-open-modal data-service="IT в экологии">Запросить консультацию</button></div>
+          <div class="mt-12"><button class="btn btn-solid" type="button" data-open-modal data-service="IT в экологии">Запросить консультацию</button></div>
         </article>
       </div>
     </div>
@@ -558,14 +587,14 @@
             <li>Офис: Город, улица и т. д.</li>
           </ul>
           <div class="mt-16 social">
-            <a href="https://vk.com/greencheck" target="_blank" rel="noopener" aria-label="VK">
+            <a href="https://vk.com/greencheck" target="_blank" rel="noopener noreferrer" aria-label="VK">
               <!-- VK icon -->
-              <svg viewBox="0 0 24 24" fill="none"><path d="M3 7.5h3.6c.2 3.4 1.8 5.3 3 6.1V7.5h3.3v3.6c1.1-.1 2.3-1.6 2.7-3.6H21c-.5 2.3-2 4.1-3.5 5.3 1.4 1 .9 2.1 3.5 4.6h-3.9c-1.5-1.6-2.6-2.6-3.7-2.6v2.6H9.1V14.2C8 14.2 7 15.3 5.7 17.4H1.9c1.8-2.8 3.5-4.7 4.6-5.3-1.1-.8-2.4-2.6-2.5-4.6Z" fill="#2E3A40"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M3 7.5h3.6c.2 3.4 1.8 5.3 3 6.1V7.5h3.3v3.6c1.1-.1 2.3-1.6 2.7-3.6H21c-.5 2.3-2 4.1-3.5 5.3 1.4 1 .9 2.1 3.5 4.6h-3.9c-1.5-1.6-2.6-2.6-3.7-2.6v2.6H9.1V14.2C8 14.2 7 15.3 5.7 17.4H1.9c1.8-2.8 3.5-4.7 4.6-5.3-1.1-.8-2.4-2.6-2.5-4.6Z" fill="#2E3A40"/></svg>
               VK
             </a>
-            <a href="https://t.me/greencheck" target="_blank" rel="noopener" aria-label="Telegram">
+            <a href="https://t.me/greencheck" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
               <!-- Telegram icon -->
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9.1 14.3 8.8 18c.5 0 .8-.2 1.1-.4l2.6-2 5.4 4c1 .6 1.7.3 2-.9l3.7-17.4c.4-1.7-.6-2.4-1.7-2l-21 8.1C-.2 7.8-.2 8.6.9 9l5.4 1.6L19 4.9c.6-.3 1.1 0 .7.3L9.1 14.3Z" fill="#2E3A40"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M9.1 14.3 8.8 18c.5 0 .8-.2 1.1-.4l2.6-2 5.4 4c1 .6 1.7.3 2-.9l3.7-17.4c.4-1.7-.6-2.4-1.7-2l-21 8.1C-.2 7.8-.2 8.6.9 9l5.4 1.6L19 4.9c.6-.3 1.1 0 .7.3L9.1 14.3Z" fill="#2E3A40"/></svg>
               Telegram
             </a>
           </div>
@@ -581,7 +610,7 @@
       <div style="width:28px; height:28px; border-radius:8px; background:var(--gc-grad)"></div>
       <div>
         <strong>GreenCheck</strong><br>
-        <span class="muted">© <span id="y"></span> • Экологический и юридический консалтинг</span>
+        <span class="muted">© <span id="y">2025</span> • Экологический и юридический консалтинг</span>
       </div>
     </div>
     <div class="social">
@@ -591,39 +620,39 @@
 </footer>
 
 <!-- МОДАЛ -->
-<div class="modal" id="modal">
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="sheet">
     <div class="sheet-head">
-      <strong>Оставить заявку</strong>
+      <strong id="modal-title">Оставить заявку</strong>
       <button class="close" data-close-modal aria-label="Закрыть">
-        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 6l12 12M18 6 6 18" stroke="#333" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6 6 18" stroke="#333" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
     <div class="sheet-body">
       <form class="form" id="modal-form">
         <div class="row">
           <div>
-            <label>Ваше имя</label>
-            <input type="text" name="name" placeholder="Иван Иванов" required>
+            <label for="modal-name">Ваше имя</label>
+            <input id="modal-name" type="text" name="name" autocomplete="name" placeholder="Иван Иванов" required>
           </div>
           <div>
-            <label>Компания</label>
-            <input type="text" name="company" placeholder="ООО «Пример»">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label>Email</label>
-            <input type="email" name="email" placeholder="name@example.com" required>
-          </div>
-          <div>
-            <label>Телефон</label>
-            <input type="tel" name="phone" placeholder="+7 (___) ___-__-__">
+            <label for="modal-company">Компания</label>
+            <input id="modal-company" type="text" name="company" autocomplete="organization" placeholder="ООО «Пример»">
           </div>
         </div>
         <div class="row">
           <div>
-            <label>Интересующая услуга</label>
+            <label for="modal-email">Email</label>
+            <input id="modal-email" type="email" name="email" autocomplete="email" placeholder="name@example.com" required>
+          </div>
+          <div>
+            <label for="modal-phone">Телефон</label>
+            <input id="modal-phone" type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="modal-service">Интересующая услуга</label>
             <select name="service" id="modal-service">
               <option>Общий запрос</option>
               <option>Экологические</option>
@@ -635,8 +664,8 @@
             </select>
           </div>
           <div>
-            <label>Канал связи</label>
-            <select name="channel">
+            <label for="modal-channel">Канал связи</label>
+            <select name="channel" id="modal-channel">
               <option>Email</option>
               <option>Телефон</option>
               <option>Telegram</option>
@@ -646,8 +675,8 @@
         </div>
         <div class="row row-1">
           <div>
-            <label>Комментарий</label>
-            <textarea name="message" placeholder="Кратко опишите задачу…"></textarea>
+            <label for="modal-message">Комментарий</label>
+            <textarea id="modal-message" name="message" placeholder="Кратко опишите задачу…"></textarea>
           </div>
         </div>
         <div class="actions">
@@ -655,7 +684,7 @@
           <button class="btn btn-soft" type="button" data-close-modal>Отмена</button>
         </div>
       </form>
-      <div id="modal-success" class="mt-16" style="display:none">
+      <div id="modal-success" class="mt-16" style="display:none" role="alert" aria-live="polite">
         <div class="card" style="background:#f1fbf5">Спасибо! Мы свяжемся с вами в ближайшее время.</div>
       </div>
     </div>
@@ -664,7 +693,7 @@
 
 <!-- КНОПКА НАВЕРХ -->
 <button class="to-top" id="toTop" aria-label="Наверх">
-  <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 19V5m0 0l-7 7m7-7 7 7" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M12 19V5m0 0l-7 7m7-7 7 7" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
 
 <script>
@@ -674,30 +703,48 @@
   // Мобильное меню
   const burger = document.getElementById('burger');
   const menu = document.getElementById('menu');
-  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  burger.addEventListener('click', () => {
+    const isOpen = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
   Array.from(menu.querySelectorAll('a')).forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
 
   // Плавная прокрутка — нативная через CSS (scroll-behavior). Дополнительно: кнопка "наверх".
   const toTop = document.getElementById('toTop');
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   window.addEventListener('scroll', () => {
     toTop.classList.toggle('show', window.scrollY > 600);
   });
-  toTop.addEventListener('click', () => window.scrollTo({top: 0, behavior: 'smooth'}));
+  toTop.addEventListener('click', () => {
+    if (prefersReducedMotion) window.scrollTo(0, 0);
+    else window.scrollTo({top: 0, behavior: 'smooth'});
+  });
 
   // Модал «Оставить заявку»
   const modal = document.getElementById('modal');
   const modalService = document.getElementById('modal-service');
   const modalForm = document.getElementById('modal-form');
   const modalSuccess = document.getElementById('modal-success');
+  let lastActiveElement = null;
 
   function openModal(serviceName){
     modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lastActiveElement = document.activeElement;
     if (serviceName) modalService.value = serviceName;
+    requestAnimationFrame(() => {
+      const first = modal.querySelector('input, select, textarea, button');
+      if (first) first.focus();
+    });
   }
   function closeModal(){
     modal.classList.remove('open');
     modalForm.reset();
     modalSuccess.style.display = 'none';
+    document.body.style.overflow = '';
+    if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+      lastActiveElement.focus();
+    }
   }
   document.querySelectorAll('[data-open-modal]').forEach(el=>{
     el.addEventListener('click', (e)=>{
@@ -707,6 +754,22 @@
   });
   document.querySelectorAll('[data-close-modal]').forEach(el=>el.addEventListener('click', closeModal));
   modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+  // Фокус-трап и закрытие по Esc для модала
+  function handleModalKeydown(e){
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeModal(); return; }
+    if (e.key === 'Tab'){
+      const focusable = modal.querySelectorAll('a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])');
+      const list = Array.from(focusable).filter(el => el.offsetParent !== null);
+      if (list.length === 0) return;
+      const first = list[0];
+      const last = list[list.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  }
+  document.addEventListener('keydown', handleModalKeydown);
 
   // Сабмит форм — демонстрационный (без бэкенда)
   function handleSubmit(form){
@@ -727,4 +790,3 @@
 </script>
 </body>
 </html>
-
