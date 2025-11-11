@@ -37,6 +37,9 @@
     --shadow-1:0 6px 24px rgba(0,0,0,.08);
     --shadow-2:0 10px 40px rgba(0,0,0,.12);
     --header-h:72px;
+    --ease:cubic-bezier(.22,.61,.36,1);
+    --t-fast:160ms;
+    --t-slow:280ms;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -72,13 +75,15 @@
     display:flex; gap:16px; align-items:center; font-size:15px; flex-wrap:wrap;
   }
   .menu a{
-    padding:10px 12px; border-radius:10px; transition:background .2s ease;
+    padding:10px 12px; border-radius:10px; transition:background .2s ease, color .2s ease;
     white-space:nowrap;
   }
-  .menu a:hover{background:var(--gc-soft)}
+  .menu a:not(.nav-cta):hover{background:var(--gc-soft)}
   .nav-cta{
     padding:10px 14px; border-radius:12px; background:var(--gc-grad); color:#fff; font-weight:600; box-shadow:var(--shadow-1);
+    transition:background .2s ease, box-shadow .3s ease;
   }
+  .nav-cta:hover{background:linear-gradient(135deg, #3fd26a 0%, #0290d3 100%); box-shadow:var(--shadow-2);}
   /* Мобильный бургер */
   .burger{display:none; width:42px; height:42px; border-radius:12px; border:1px solid rgba(0,0,0,.1); align-items:center; justify-content:center; background:#fff}
   .burger span{display:block; width:20px; height:2px; background:#111; position:relative}
@@ -136,14 +141,19 @@
 
   .card{
     background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:var(--radius-lg); padding:18px; box-shadow:var(--shadow-1); position:relative; overflow:hidden;
+    transition:transform var(--t-fast) var(--ease), box-shadow .28s var(--ease), border-color .28s var(--ease); will-change:transform;
   }
+  .card:hover,.card:focus-within{transform:translateY(-4px); box-shadow:var(--shadow-2); border-color:rgba(0,0,0,.12)}
   .card h3{margin:4px 0 8px; font-size:18px}
   .muted{color:#5a6a70; font-size:15px}
   .list{margin:8px 0 0; padding:0 0 0 18px}
   .badge{
     position:absolute; top:14px; right:-12px; background:var(--gc-teal); color:#fff; padding:8px 14px; transform:rotate(8deg);
-    border-radius:12px; font-weight:800; letter-spacing:.3px; box-shadow:var(--shadow-1); cursor:pointer;
+    border-radius:12px; font-weight:800; letter-spacing:.3px; box-shadow:var(--shadow-1); cursor:pointer; transition:transform var(--t-fast) var(--ease), box-shadow .28s var(--ease);
   }
+  .badge:hover{transform:rotate(6deg) translateY(-2px) scale(1.02); box-shadow:var(--shadow-2)}
+  @keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(3deg)}75%{transform:rotate(-3deg)}}
+  .badge:focus-visible{animation:wiggle .4s var(--ease)}
 
   /* ==== КОМАНДА ==== */
   .team{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
@@ -166,9 +176,11 @@
   .logos{display:grid; grid-template-columns:repeat(6,1fr); gap:10px}
   .logo-box{
     aspect-ratio:3/2; border-radius:14px; background:#fff; border:1px solid rgba(0,0,0,.08);
-    display:grid; place-items:center; padding:12px; box-shadow:var(--shadow-1)
+    display:grid; place-items:center; padding:12px; box-shadow:var(--shadow-1); transition:transform var(--t-fast) var(--ease), box-shadow .28s var(--ease);
   }
-  .logo-box img{max-width:80%; max-height:80%; object-fit:contain; filter:grayscale(.1); opacity:.9}
+  .logo-box img{max-width:80%; max-height:80%; object-fit:contain; filter:grayscale(.35); opacity:.9; transition:filter var(--t-fast) var(--ease), transform var(--t-fast) var(--ease)}
+  .logo-box:hover{transform:translateY(-4px); box-shadow:var(--shadow-2)}
+  .logo-box:hover img{filter:grayscale(0); opacity:1; transform:scale(1.02)}
   @media (max-width:980px){ .logos{grid-template-columns:repeat(3,1fr)} }
 
   /* ==== КОНТАКТЫ ==== */
@@ -224,6 +236,47 @@
   @supports (backdrop-filter: blur(4px)){
     .hero .note{ background:rgba(0,0,0,.16); border:1px solid rgba(255,255,255,.22); padding:8px 12px; border-radius:12px; display:inline-block; backdrop-filter:blur(6px) saturate(120%) }
   }
+
+  /* ==== МИКРОВЗАИМОДЕЙСТВИЯ ==== */
+  .btn{
+    transition:transform var(--t-fast) var(--ease), box-shadow .28s var(--ease), background-color .2s;
+  }
+  .btn:hover{transform:translateY(-2px); box-shadow:var(--shadow-2)}
+  .btn:active{transform:translateY(0) scale(.98); box-shadow:var(--shadow-1)}
+
+  .menu a:not(.nav-cta){
+    background-image:linear-gradient(currentColor 0 0);
+    background-position:left bottom;
+    background-size:0 2px;
+    background-repeat:no-repeat;
+    transition:background-size .2s var(--ease), color .2s;
+  }
+  .menu a:not(.nav-cta):hover,
+  .menu a:not(.nav-cta):focus-visible{background-size:100% 2px}
+
+  .burger span,.burger span::before,.burger span::after{transition:transform var(--t-fast) var(--ease), opacity var(--t-fast)}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{transform:translateY(6px) rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{transform:translateY(-6px) rotate(-45deg)}
+
+  .hero-blob .hero-logo{transition:transform .5s var(--ease), filter .3s var(--ease)}
+  .hero-blob:hover .hero-logo{transform:scale(1.03); filter:drop-shadow(0 10px 30px rgba(0,0,0,.22))}
+
+  .to-top{transition:transform var(--t-fast) var(--ease)}
+  .to-top:hover{transform:translateY(-2px)}
+
+  input:focus-visible,select:focus-visible,textarea:focus-visible{
+    outline:2px solid var(--gc-teal); outline-offset:2px; box-shadow:0 0 0 3px rgba(0,191,166,.15); border-color:var(--gc-teal);
+  }
+
+  .modal .sheet{
+    transform:translateY(12px) scale(.98); opacity:0;
+    transition:transform var(--t-slow) var(--ease), opacity var(--t-slow) var(--ease);
+  }
+  .modal.open .sheet{transform:translateY(0) scale(1); opacity:1}
+
+  .reveal{opacity:0; transform:translateY(12px); transition:opacity .6s var(--ease), transform .6s var(--ease)}
+  .reveal.visible{opacity:1; transform:none}
 
   /* ==== ФОКУС И SKIP-LINK ==== */
   .skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
@@ -749,6 +802,21 @@
   toTop.addEventListener('click', () => {
     if (prefersReducedMotion) window.scrollTo(0, 0);
     else window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
+  // Анимация появления карточек и логотипов
+  const revealTargets = document.querySelectorAll('.card, .event, .post, .logo-box');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealTargets.forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
   });
 
   // Модал «Оставить заявку»
